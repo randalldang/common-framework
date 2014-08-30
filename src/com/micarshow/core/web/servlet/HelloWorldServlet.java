@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.micarshow.core.service.HelloWorldService;
@@ -20,7 +21,7 @@ public class HelloWorldServlet extends BaseServlet {
   @Override
   protected void handleGet(HttpServletRequest req, HttpServletResponse resp) {
     try {
-      resp.getWriter().write(helloWorldService.sayHello());
+      resp.getWriter().write(new Gson().toJson(helloWorldService.sayHello()));
     } catch (IOException e) {
       e.printStackTrace();
     }
